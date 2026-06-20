@@ -38,7 +38,7 @@ def test_login_product(page):
         #page.fill("#user-name","standard_user")
         #page.fill("#password","secret_sauce")
         #page.click("#login-button")
-        assert page.locator(".title").text_content()=="Products"
+        assert page.locator(".title").text_content() == "Products"
         #print("Login Successful!")
         #browser.close()
 
