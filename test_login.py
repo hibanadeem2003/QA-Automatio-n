@@ -10,6 +10,7 @@ from login_page import LoginPage
     #    yield page
      #   browser.close()
 
+@pytest.mark.regression
 def test_locked_out_user(page):
     #with sync_playwright() as p:
         #browser = p.chromium.launch(headless=False)
@@ -25,6 +26,7 @@ def test_locked_out_user(page):
         #print("Login Successful!")
         #browser.close()
 
+@pytest.mark.smoke
 def test_login_product(page):
     #with sync_playwright() as p:
         #browser = p.chromium.launch(headless=False)
@@ -40,6 +42,7 @@ def test_login_product(page):
         #print("Login Successful!")
         #browser.close()
 
+@pytest.mark.smoke
 def test_cart_is_visible(page):
     #with sync_playwright() as p:
      #   browser = p.chromium.launch(headless=False)
@@ -54,6 +57,8 @@ def test_cart_is_visible(page):
         assert page.locator(".shopping_cart_link").is_visible()
        # browser.close()
 
+
+@pytest.mark.regression
 def test_add_to_cart(page):
     #with sync_playwright() as p:
      #   browser = p.chromium.launch(headless=False)
@@ -69,6 +74,8 @@ def test_add_to_cart(page):
         assert page.locator(".shopping_cart_badge").text_content() == "1"
        # browser.close()
 
+
+@pytest.mark.regression
 def test_cart_url(page):
     #with sync_playwright() as p:
      #   browser = p.chromium.launch(headless=False)
@@ -84,6 +91,8 @@ def test_cart_url(page):
         assert "cart" in page.url
        # browser.close()
 
+
+@pytest.mark.regression
 @pytest.mark.parametrize("username, expected_result", [
     ("standard_user", "success"),
     ("locked_out_user", "blocked"),
