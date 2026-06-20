@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
 import pytest_html
+import os
 
 @pytest.fixture
 def page():
@@ -19,7 +20,10 @@ def pytest_runtest_makereport(item, call):
         extra = getattr(report, "extra", [])
 
         if report.failed and page:
-            screenshot_path = f"failure_{item.name}.png"
+            screenshot_filename = f"failure_{item.name}.png"
+            screenshot_path = os.path.join("reports", screenshot_filename)
+            page.screenshot(path=screenshot_path)
+            extra.append(pytest_html.extras.image(screenshot_filename))
             page.screenshot(path=screenshot_path)
             extra.append(pytest_html.extras.image(screenshot_path))
             extra.append(pytest_html.extras.text(
