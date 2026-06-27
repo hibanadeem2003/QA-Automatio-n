@@ -103,6 +103,8 @@
           "listen": "test",
           "script": {
             "exec": [
+              "pm.collectionVariables.set(\"lastCreatedEmail\", pm.collectionVariables.get(\"dynamicEmail\"));\r",
+              "\r",
               "pm.test(\"Status code is 201\", function () {\r",
               "    pm.response.to.have.status(200);\r",
               "});\r",
@@ -457,7 +459,7 @@
           "urlencoded": [
             {
               "key": "email",
-              "value": "hiba.temp.delete@example.com",
+              "value": "{{lastCreatedEmail}}",
               "type": "text",
               "uuid": "198ced5d-3c68-44af-8ddc-7e70b4a75621"
             },
@@ -470,7 +472,7 @@
           ]
         },
         "url": {
-          "raw": "https://automationexercise.com/api/deleteAccount?email=hiba.temp.delete@example.com\n&password=Temp@1234",
+          "raw": "https://automationexercise.com/api/deleteAccount?email={{lastCreatedEmail}}&password=Temp@1234",
           "protocol": "https",
           "host": [
             "automationexercise",
@@ -483,7 +485,7 @@
           "query": [
             {
               "key": "email",
-              "value": "hiba.temp.delete@example.com\n"
+              "value": "{{lastCreatedEmail}}"
             },
             {
               "key": "password",
