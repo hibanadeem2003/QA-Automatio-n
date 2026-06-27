@@ -1,0 +1,527 @@
+{
+  "info": {
+    "_postman_id": "91618c4d-cfcb-4a00-8429-8e1fcade7b11",
+    "name": "Automation API testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56121859",
+    "_collection_link": "https://go.postman.co/collection/56121859-91618c4d-cfcb-4a00-8429-8e1fcade7b11?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "https://automationexercise.com/api/getUserDetailByEmail",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/getUserDetailByEmail?email=hiba.temp.delete@example.com",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "getUserDetailByEmail"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "hiba.temp.delete@example.com"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/verifyLogin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"User exists message returned\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.message).to.eql(\"User exists!\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "hiba.qa.practice@example.com",
+              "type": "text",
+              "uuid": "6f95f4a5-fa4a-413e-96d2-30fbf1cc84d2"
+            },
+            {
+              "key": "password",
+              "value": "Test@1234",
+              "type": "text",
+              "uuid": "7c7e491c-d57d-46e7-8f11-630f8bed563d"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://automationexercise.com/api/verifyLogin",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "verifyLogin"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/createAccount",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response message is User created!\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.message).to.eql(\"User created!\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "let timestamp = Date.now();\r",
+              "let uniqueEmail = \"hiba.test.\" + timestamp + \"@example.com\";\r",
+              "pm.collectionVariables.set(\"dynamicEmail\", uniqueEmail);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "hiba",
+              "type": "text",
+              "uuid": "3be2345d-ec53-43d8-9a41-4d92e15ef983"
+            },
+            {
+              "key": "email",
+              "value": "{{dynamicEmail}}",
+              "type": "text",
+              "uuid": "3fed2973-7261-4f2f-aa8a-bed54c9fc39c"
+            },
+            {
+              "key": "password",
+              "value": "Test@1234",
+              "type": "text",
+              "uuid": "7ff1b4b5-24e5-4792-b978-e02f2e6e1f64"
+            },
+            {
+              "key": "title",
+              "value": "Miss",
+              "type": "text",
+              "uuid": "63bb4b74-2e46-4f9c-834c-8796ad08d970"
+            },
+            {
+              "key": "birth_date",
+              "value": "15",
+              "type": "text",
+              "uuid": "788891cc-4dee-4486-bbf3-e967cd85017b"
+            },
+            {
+              "key": "birth_month",
+              "value": "6",
+              "type": "text",
+              "uuid": "0a996a59-9d3e-4924-ab51-a915b75307da"
+            },
+            {
+              "key": "birth_year",
+              "value": "2000",
+              "type": "text",
+              "uuid": "36a782b2-a1da-4005-a17b-691970381bf6"
+            },
+            {
+              "key": "firstname",
+              "value": "Hiba",
+              "type": "text",
+              "uuid": "bb226f2e-b726-491f-a0bf-f99c892b46b6"
+            },
+            {
+              "key": "lastname",
+              "value": "Tester",
+              "type": "text",
+              "uuid": "dc1a9c5f-9e43-4f65-9ac3-fb5c7e5e907f"
+            },
+            {
+              "key": "address1",
+              "value": "123 Test Street",
+              "type": "text",
+              "uuid": "45c48150-01ac-414e-bb80-d29824a3dcff"
+            },
+            {
+              "key": "country",
+              "value": "Pakistan",
+              "type": "text",
+              "uuid": "a1ff7906-3026-42cf-ac4e-8120ae5ce59b"
+            },
+            {
+              "key": "zipcode",
+              "value": "12345",
+              "type": "text",
+              "uuid": "ea3ae4a4-0ca8-4492-b485-9587014e211b"
+            },
+            {
+              "key": "state",
+              "value": "Sindh",
+              "type": "text",
+              "uuid": "acebee4b-8622-48c3-9aa8-e664f18ead01"
+            },
+            {
+              "key": "city",
+              "value": "Karachi",
+              "type": "text",
+              "uuid": "295cc283-4d80-459c-8144-6b2391b1dbd3"
+            },
+            {
+              "key": "mobile_number",
+              "value": "03001234567",
+              "type": "text",
+              "uuid": "c68a91a1-599d-4f33-96e3-28dbc43dace3"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://automationexercise.com/api/createAccount",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "createAccount"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/updateAccount",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "hibaupdate",
+              "type": "text",
+              "uuid": "9e5632d1-589e-40d8-abae-6546a32bce0e"
+            },
+            {
+              "key": "email",
+              "value": "hiba.qa.practice@example.com",
+              "type": "text",
+              "uuid": "3874ebac-70d2-4b7d-9146-ab49a21013b9"
+            },
+            {
+              "key": "password",
+              "value": "Test@1234",
+              "type": "text",
+              "uuid": "abde1e80-4175-4b07-a382-ecdae5cbc7f2"
+            },
+            {
+              "key": "title",
+              "value": "Miss",
+              "type": "text",
+              "uuid": "70a8d09d-f794-4287-b3d7-ac908a63c487"
+            },
+            {
+              "key": "birth_date",
+              "value": "15",
+              "type": "text",
+              "uuid": "bf131c2e-5f54-4aad-aa3b-8d255399ebed"
+            },
+            {
+              "key": "birth_month",
+              "value": "6",
+              "type": "text",
+              "uuid": "e43cd5c4-4839-4cb8-9df4-512e671b2bd6"
+            },
+            {
+              "key": "birth_year",
+              "value": "2000",
+              "type": "text",
+              "uuid": "d4d8304f-ffb3-48a4-b513-0e1801e92f22"
+            },
+            {
+              "key": "firstname",
+              "value": "Hiba",
+              "type": "text",
+              "uuid": "e62b57fe-14ae-4f62-89d5-d023a1724272"
+            },
+            {
+              "key": "lastname",
+              "value": "Tester",
+              "type": "text",
+              "uuid": "133911c7-c442-40cb-bf7a-ab96ad08e69d"
+            },
+            {
+              "key": "address1",
+              "value": "123 Test Street",
+              "type": "text",
+              "uuid": "494d4c98-b7c8-42e1-9e5e-3023199994d4"
+            },
+            {
+              "key": "country",
+              "value": "Pakistan",
+              "type": "text",
+              "uuid": "17eb9627-2b1d-4e91-a1ea-2a9e3ae0a129"
+            },
+            {
+              "key": "zipcode",
+              "value": "12345",
+              "type": "text",
+              "uuid": "164227a0-5c34-48d3-9bee-935434752b31"
+            },
+            {
+              "key": "state",
+              "value": "Pakistan",
+              "type": "text",
+              "uuid": "762fc941-2e01-44d9-a833-9a4533501170"
+            },
+            {
+              "key": "city",
+              "value": "lahore",
+              "type": "text",
+              "uuid": "2b8ceada-0a5a-49d8-aa63-cd5a4b27f349"
+            },
+            {
+              "key": "mobile_number",
+              "value": "03001234567",
+              "type": "text",
+              "uuid": "44c18842-6fa0-4e24-82bf-fa2c5c961371"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://automationexercise.com/api/updateAccount",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "updateAccount"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/getUserDetailByEmail",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response contains correct name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.user.name).to.eql(\"hibaupdate\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/getUserDetailByEmail?email=hiba.qa.practice@example.com",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "getUserDetailByEmail"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "hiba.qa.practice@example.com"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/deleteAccount",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response message confirms deletion\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.message).to.eql(\"Account deleted!\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "hiba.temp.delete@example.com",
+              "type": "text",
+              "uuid": "198ced5d-3c68-44af-8ddc-7e70b4a75621"
+            },
+            {
+              "key": "password",
+              "value": "Test@1234",
+              "type": "text",
+              "uuid": "3567fc5c-008e-44b5-b58f-b43e886a96dc"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://automationexercise.com/api/deleteAccount?email=hiba.temp.delete@example.com\n&password=Temp@1234",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "deleteAccount"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "hiba.temp.delete@example.com\n"
+            },
+            {
+              "key": "password",
+              "value": "Temp@1234"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://automationexercise.com/api/productsList",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationexercise.com/api/productsList",
+          "protocol": "https",
+          "host": [
+            "automationexercise",
+            "com"
+          ],
+          "path": [
+            "api",
+            "productsList"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "dynamicEmail",
+      "value": ""
+    }
+  ]
+}

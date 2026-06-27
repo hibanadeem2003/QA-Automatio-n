@@ -20,3 +20,19 @@ jobs:
 
       - name: Run tests
         run: pytest test_login.py -v
+
+  api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman collection
+        run: newman run Postman/Automation\ API\ testing.postman_collection.json
